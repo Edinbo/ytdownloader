@@ -52,12 +52,13 @@ def download(x):
     try:
         yt = pt.YouTube(x)
         video_resolutions = []
+
         for video in yt.streams.filter(progressive=True, only_video=True):
             video_resolutions.append(video.resolution)
 
         print("Available Resolutions (mp4/video): ")
         for res in video_resolutions:
-            print(str(res.lenght) + str(res))
+            print(str(res))
 
         audio_resolutions = []
         for audio in yt.streams.filter(progressive=True, only_audio=True):
@@ -65,15 +66,15 @@ def download(x):
 
         print("Available Resolutions (mp3/audio): ")
         for res in audio_resolutions:
-            print(str(res.lenght) + str(res))
+            print(str(res))
 
-        print(f"//////////////////////\n {red('1 : download all resolutions for video')} \n {red('2 : download all resolutions for audio')} \n {red('3 : download all resolutions for both')}")
+        print(f"//////////////////////\n {red('1 : download highest resolution for video')} \n {red('2 : download highest resolution for audio')} \n {red('3 : download all')}")
         answer = input("Select something : ")
         if answer == 1:
-            only_vid = yt.streams.filter(only_video=True)
+            only_vid = yt.streams.filter(only_audio=False, progressive=True, file_extension='mp4').order_by('resolution').desc().first()
             only_vid.download(desktop)
         if answer == 2:
-            only_audio = yt.streams.filter(only_audio=True)
+            only_audio = yt.streams.filter(only_audio=True, file_extension='mp3').order_by('abr').desc().first()
             only_audio.download(desktop)
         if answer == 3:
             all_vids = yt.streams.all()
