@@ -20,9 +20,6 @@ def purple(text):
 
 def white(text):
     faded = "\033[97m"
-    for character in text:
-        faded += character
-    faded += "\033[25m"
     return faded
 
 def red(text):
@@ -82,10 +79,10 @@ def download(x):
             all_vids = yt.streams.all()
             all_vids.download(desktop)
     except:
-        print(red("Try downloading again it seems that it didnt work"))
+        print(red("Try downloading again it seems like it didnt work"))
         x = input("Lets try using the same youtube link : ")
         download(x)
-        
+
 def question():
     download_answer = input(purple("Do you want do download this video? (y/n)"))
     if download_answer.lower() != "y":
@@ -93,12 +90,12 @@ def question():
         exit()
     else:
         download(video_link)
-        
+
 def main(video_link):
     try:
         yt = pt.YouTube(video_link)
         title, author, views, rating, channel_id, channel_url, publish_date, video_length, thumbnail = yt.title, yt.author, yt.views, yt.rating, yt.channel_id, yt.channel_url, yt.publish_date, yt.length, yt.thumbnail_url
-        print(white(f" {red('Video Title')} : {white(title)} \n {red('Author/Creator')} : {white(author)} \n {red('Total Views')} : {white(millify(views))} \n {red('Video/Song Length(h,m,s)')} : {white(convert(video_length))} \n {red('Publish Date')} : {white(publish_date)} \n {red('Rating')} : {white(rating)} \n {red('Thumbnail')} : {white(thumbnail)} \n {red('Channel ID')} : {white(channel_id)} \n {red('Channel URL')} : {white(channel_url)}"))
+        print(f" {red('Video Title')} : {white(title)} \n {red('Author/Creator')} : {white(author)} \n {red('Total Views')} : {white(millify(views))} \n {red('Video/Song Length(h,m,s)')} : {white(convert(video_length))} \n {red('Publish Date')} : {white(publish_date)} \n {red('Rating')} : {white(rating)} \n {red('Thumbnail')} : {white(thumbnail)} \n {red('Channel ID')} : {white(channel_id)} \n {red('Channel URL')} : {white(channel_url)}")
     except:
         print(red("Invalid Link!"))
         main(input(purple("Youtube video link : ")))
