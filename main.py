@@ -83,19 +83,19 @@ def download(x):
             only_vid = yt.streams.filter(only_audio=False, progressive=True, file_extension='mp4').order_by('resolution').desc().first()
             only_vid.download(desktop)
             print(f"Succesfully downloaded {only_vid} to {desktop}")
-            print(purple("Thanks for using / Github : Edinbo"))
+            print(purple("Thanks for using // Github : Edinbo"))
         elif answer == 2:
             only_audio = yt.streams.filter(only_audio=True, file_extension='mp4').order_by('abr').desc().first()
             only_audio.download(desktop)
             print(f"Succesfully downloaded {only_audio} to {desktop}")
-            print(purple("Thanks for using / Github : Edinbo"))
+            print(purple("Thanks for using // Github : Edinbo"))
         elif answer == 3:
             both_audio = yt.streams.filter(only_audio=True, file_extension='mp4').order_by('abr').desc().first()
             both_video = yt.streams.filter(only_audio=False, progressive=True, file_extension='mp4').order_by('resolution').desc().first()
             both_audio.download(desktop)
             both_video.download(desktop)
             print(f"Succesfully downloaded {both_video, both_audio} to {desktop}")
-            print(purple("Thanks for using / Github : Edinbo"))
+            print(purple("Thanks for using // Github : Edinbo"))
     except:
         print(red("Try downloading again, it seems like it didn't work"))
         x = input(purple("Let's try using the same YouTube link : "))
@@ -104,7 +104,7 @@ def download(x):
 def question():
     download_answer = input(purple("Do you want to download this video? (y/n)"))
     if download_answer.lower() != "y":
-        print(purple("Thanks for using / Github : Edinbo"))
+        print(purple("Thanks for using // Github : Edinbo"))
         exit()
     else:
         download(video_link)
